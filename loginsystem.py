@@ -6,7 +6,7 @@ password = input("Enter your password: ")
 if username == "admin" and password =="python123":
     print("Login successful")
 else:
-    print("Login failed")
+    print("invalid ceredentials.")
     #allow user to try again for maximum 3 attempts
     for i in range(2):
         username = input("Enter your username: ")
@@ -15,6 +15,6 @@ else:
             print("Login successful")
             break
         else:
-            print("Login failed")
+            print("invalid credentials.")
     else:
-        print("Maximum attempts reached. Try again later.")
+        print("Account Locked.")
