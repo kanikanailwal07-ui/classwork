@@ -1,0 +1,30 @@
+# =====================================================================
+# Problem 6: Tuple Operations
+# =====================================================================
+def tuple_operations():
+    # Tuples are immutable, so this is fixed data - 15 student names
+    students = (
+        "Aarav", "Vivaan", "Aditya", "Vihaan", "Arjun",
+        "Reyansh", "Ayaan", "Krishna", "Ishaan", "Shaurya",
+        "Atharv", "Advik", "Kabir", "Ansh", "Ryan"
+    )
+
+    print(f"Total students        : {len(students)}")
+    print(f"First five students   : {students[:5]}")   # slice from start
+    print(f"Last five students    : {students[-5:]}")  # slice from end
+
+    # Search for a name inside the tuple
+    search_name = input("Enter a student name to search: ")
+    if search_name in students:
+        print(f"'{search_name}' found at index {students.index(search_name)}.")
+    else:
+        print(f"'{search_name}' not found.")
+
+    # Count how many times a given name occurs
+    count_name = input("Enter a name to count occurrences: ")
+    print(f"'{count_name}' occurs {students.count(count_name)} time(s).")
+
+    # Convert the tuple to a list (tuples can't be sorted in place) and sort it
+    sorted_list = list(students)
+    sorted_list.sort()
+    print(f"Sorted list of students: {sorted_list}")

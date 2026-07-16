@@ -1,0 +1,45 @@
+# =====================================================================
+# Problem 7: Student Result Management
+# =====================================================================
+def get_grade(marks):
+    # Simple grade lookup based on marks range
+    if marks >= 90:
+        return "A"
+    elif marks >= 75:
+        return "B"
+    elif marks >= 60:
+        return "C"
+    elif marks >= 35:
+        return "D"
+    else:
+        return "Fail"
+
+
+def result_management():
+    students = {}  # dictionary mapping Roll No -> Marks
+    print("Enter Roll No and Marks for 10 students:")
+    for i in range(10):
+        roll = input(f"Student {i + 1} - Roll No: ")
+        marks = float(input(f"Student {i + 1} - Marks: "))
+        students[roll] = marks
+
+    # Topper = key with the highest value in the dictionary
+    topper_roll = max(students, key=students.get)
+
+    # Average of all marks
+    average = sum(students.values()) / len(students)
+
+    # Students scoring strictly above the average
+    above_average = {r: m for r, m in students.items() if m > average}
+
+    # Count how many students failed (marks below 35)
+    failed_count = sum(1 for m in students.values() if m < 35)
+
+    print(f"\nTopper              : Roll No {topper_roll} ({students[topper_roll]} marks)")
+    print(f"Average Marks       : {average:.2f}")
+    print(f"Above Average       : {above_average}")
+    print(f"Failed Students     : {failed_count}")
+    print("Grades:")
+    for roll, marks in students.items():
+        print(f"  Roll No {roll}: {marks} -> {get_grade(marks)}")
+

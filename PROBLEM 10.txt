@@ -1,0 +1,146 @@
+# =====================================================================
+# Problem 10: Student Record Management System (menu-driven)
+# =====================================================================
+def add_student(records):
+    # Each student is stored as a dictionary inside the 'records' list
+    roll = input("Enter Roll Number: ")
+
+    # Prevent duplicate roll numbers
+    for r in records:
+        if r["roll"] == roll:
+            print("Duplicate Roll Number! Student not added.")
+            return
+
+    name = input("Enter Name: ")
+    age = input("Enter Age: ")
+    course = input("Enter Course: ")
+    marks = input("Enter Marks: ")
+
+    # Validate numeric fields before saving
+    try:
+        age = int(age)
+        marks = float(marks)
+    except ValueError:
+        print("Invalid age or marks. Student not added.")
+        return
+
+    records.append({
+        "roll": roll,
+        "name": name,
+        "age": age,
+        "course": course,
+        "marks": marks,
+    })
+    print("Student added successfully.")
+
+
+def display_all_students(records):
+    if not records:
+        print("No student records found.")
+        return
+    for r in records:
+        print(r)
+
+
+def search_student(records):
+    roll = input("Enter Roll Number to search: ")
+    for r in records:
+        if r["roll"] == roll:
+            print(r)
+            return
+    print("Student not found.")
+
+
+def update_marks(records):
+    roll = input("Enter Roll Number to update marks: ")
+    for r in records:
+        if r["roll"] == roll:
+            try:
+                r["marks"] = float(input("Enter new marks: "))
+                print("Marks updated successfully.")
+            except ValueError:
+                print("Invalid marks entered.")
+            return
+    print("Student not found.")
+
+
+def delete_student(records):
+    roll = input("Enter Roll Number to delete: ")
+    for r in records:
+        if r["roll"] == roll:
+            records.remove(r)
+            print("Student deleted successfully.")
+            return
+    print("Student not found.")
+
+
+def display_topper(records):
+    if not records:
+        print("No student records found.")
+        return
+    # max() with a key function picks the dict with the highest 'marks'
+    topper = max(records, key=lambda r: r["marks"])
+    print(topper)
+
+
+def display_average(records):
+    if not records:
+        print("No student records found.")
+        return
+    avg = sum(r["marks"] for r in records) / len(records)
+    print(f"Average Marks: {avg:.2f}")
+
+
+def display_above_average(records):
+    if not records:
+        print("No student records found.")
+        return
+    avg = sum(r["marks"] for r in records) / len(records)
+    above = [r for r in records if r["marks"] > avg]
+    if not above:
+        print("No students scored above average.")
+    for r in above:
+        print(r)
+
+
+def student_management():
+    records = []  # list of dictionaries; acts as our in-memory "database"
+    menu = """
+1. Add Student
+2. Display All Students
+3. Search Student by Roll Number
+4. Update Marks
+5. Delete Student
+6. Display Topper
+7. Display Average Marks
+8. Display Students Above Average
+9. Exit
+"""
+    while True:
+        print(menu)
+        choice = input("Enter your choice: ")
+
+        # Each menu option is handled by its own dedicated function
+        if choice == "1":
+            add_student(records)
+        elif choice == "2":
+            display_all_students(records)
+        elif choice == "3":
+            search_student(records)
+        elif choice == "4":
+            update_marks(records)
+        elif choice == "5":
+            delete_student(records)
+        elif choice == "6":
+            display_topper(records)
+        elif choice == "7":
+            display_average(records)
+        elif choice == "8":
+            display_above_average(records)
+        elif choice == "9":
+            print("Exiting program.")
+            break  # leave the while loop, ending the menu
+        else:
+            print("Invalid choice. Please try again.")
+
+

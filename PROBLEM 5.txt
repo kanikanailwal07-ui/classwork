@@ -1,0 +1,45 @@
+# =====================================================================
+# Problem 5: List Processing
+# =====================================================================
+def list_processing():
+    numbers = []
+    print("Enter 20 integers:")
+    for i in range(20):
+        numbers.append(int(input(f"Number {i + 1}: ")))
+
+    # a) largest number using built-in max()
+    largest = max(numbers)
+
+    # b) second largest number
+    # Convert to a set first to drop duplicates, then sort in descending order.
+    # This ensures that if the max value repeats, we still get a genuinely
+    # different second-highest value.
+    unique_sorted = sorted(set(numbers), reverse=True)
+    second_largest = unique_sorted[1] if len(unique_sorted) > 1 else None
+
+    # c) smallest number using built-in min()
+    smallest = min(numbers)
+
+    # d) remove duplicates while preserving the original order
+    seen = set()
+    no_duplicates = []
+    for n in numbers:
+        if n not in seen:
+            seen.add(n)
+            no_duplicates.append(n)
+
+    # e) filter even numbers using a list comprehension
+    evens = [n for n in numbers if n % 2 == 0]
+
+    # f) numbers divisible by both 3 and 5 (i.e. divisible by 15)
+    div_3_5 = [n for n in numbers if n % 3 == 0 and n % 5 == 0]
+
+
+
+    print(f"\na) Largest number         : {largest}")
+    print(f"b) Second largest number  : {second_largest}")
+    print(f"c) Smallest number        : {smallest}")
+    print(f"d) List without duplicates: {no_duplicates}")
+    print(f"e) Even numbers           : {evens}")
+    print(f"f) Divisible by 3 and 5   : {div_3_5}")
+    print(f"g) Reversed list          : {reversed_list}")

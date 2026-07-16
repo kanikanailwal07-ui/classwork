@@ -1,0 +1,37 @@
+
+# Problem 3: Number Guessing Game
+# =====================================================================
+def guessing_game():
+    secret = 57          # the number the user has to guess
+    max_attempts = 7      # total allowed attempts
+    attempts_used = 0     # counts only valid (non-negative) attempts
+
+    print("Guess the secret number! You have 7 attempts.")
+
+    while attempts_used < max_attempts:
+        guess = int(input("Enter your guess: "))
+
+        # Negative numbers are ignored and do NOT consume an attempt
+        if guess < 0:
+            print("Negative number entered, ignored (not counted as an attempt).")
+            continue  # skip the rest of the loop body, go to next iteration
+
+        attempts_used += 1  # valid guess, so it counts
+
+        if guess == secret:
+            print(f"Correct! You guessed it in {attempts_used} attempt(s).")
+            break  # exit the loop immediately since the game is won
+        elif guess < secret:
+            print("Too low!")
+        else:
+            print("Too high!")
+    else:
+        # it runs only if the loop finished WITHOUT hitting 'break'
+        # (i.e. the user ran out of attempts)
+        print(f"Out of attempts! The secret number was {secret}.")
+
+    print(f"Attempts used: {attempts_used}")
+
+
+
+

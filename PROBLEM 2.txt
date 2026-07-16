@@ -1,0 +1,39 @@
+
+# Problem 2: Character Frequency Analyzer
+# =====================================================================
+def char_frequency():
+    text = input("Enter a string: ")
+
+    # Counters for each character category
+    upper = lower = digits = special = 0
+    freq = {}  # dictionary to track how often each character appears
+
+    for ch in text:
+        # Classify the character
+        if ch.isupper():
+            upper += 1
+        elif ch.islower():
+            lower += 1
+        elif ch.isdigit():
+            digits += 1
+        elif not ch.isspace():
+            special += 1  # anything that's not a letter/digit/space
+
+        # Build frequency map (ignore spaces so they don't dominate "most frequent")
+        if not ch.isspace():
+            freq[ch] = freq.get(ch, 0) + 1
+
+    # Find the character with the highest count
+    most_frequent = max(freq, key=freq.get) if freq else None
+
+    print(f"\nUppercase : {upper}")
+    print(f"Lowercase : {lower}")
+    print(f"Digits : {digits}")
+    print(f"Special Characters : {special}")
+    print(f"Most Frequent Character : {most_frequent}")
+
+
+
+
+ 
+       

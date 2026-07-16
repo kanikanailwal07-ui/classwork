@@ -1,0 +1,38 @@
+
+# Problem 4: Employee Salary Calculator
+# =====================================================================
+def calculate_hra(basic):
+    # House Rent Allowance = 20% of basic salary
+    return basic * 0.20
+
+
+def calculate_da(basic):
+    # Dearness Allowance = 10% of basic salary
+    return basic * 0.10
+
+
+def calculate_tax(gross_salary):
+    # Tax = 8% of gross salary
+    return gross_salary * 0.08
+
+
+def calculate_net_salary(basic):
+    # Combine all the above into the final salary breakdown
+    hra = calculate_hra(basic)
+    da = calculate_da(basic)
+    gross_salary = basic + hra + da
+    tax = calculate_tax(gross_salary)
+    net_salary = gross_salary - tax
+    return hra, da, gross_salary, tax, net_salary
+
+
+def salary_calculator():
+    basic = float(input("Enter Basic Salary: "))
+    hra, da, gross_salary, tax, net_salary = calculate_net_salary(basic)
+
+    print(f"\nBasic Salary : ₹{basic:.2f}")
+    print(f"HRA          : ₹{hra:.2f}")
+    print(f"DA           : ₹{da:.2f}")
+    print(f"Gross Salary : ₹{gross_salary:.2f}")
+    print(f"Tax          : ₹{tax:.2f}")
+    print(f"Net Salary   : ₹{net_salary:.2f}")
