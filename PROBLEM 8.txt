@@ -1,0 +1,28 @@
+Problem 8: Password Strength checker
+# =====================================================================
+def password_checker():
+    password = input("Enter a password: ")
+    special_chars = "!@#$%^&*()-_+=<>?/|~`{}[]:;\"'.,"
+
+    missing = []  # collect a human-readable list of unmet conditions
+
+    if len(password) < 8:
+        missing.append("Minimum 8 characters")
+    if not any(c.isupper() for c in password):
+        missing.append("At least one uppercase letter")
+    if not any(c.islower() for c in password):
+        missing.append("At least one lowercase letter")
+    if not any(c.isdigit() for c in password):
+        missing.append("At least one digit")
+    if not any(c in special_chars for c in password):
+        missing.append("At least one special character")
+
+    # If nothing is missing, the password satisfies every rule
+    if not missing:
+        print("\nStrong Password")
+    else:
+        print("\nWeak Password")
+        print("Missing conditions:")
+        for condition in missing:
+            print(f"  - {condition}")
+
